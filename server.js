@@ -43,7 +43,7 @@ app.use('/users', userRoutes)
 
 
 app.listen(PORT, () => {
-    console.log('server started at port 5000')
+    console.log(`server started at port ${PORT}`)
     swaggerDocs(app, PORT)
 })
 
