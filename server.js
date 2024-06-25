@@ -11,6 +11,13 @@ import categoryRoutes from "./routes/Categories.js"
 import issueSheetRoutes from "./routes/IssueSheet.js"
 import userRoutes from "./routes/User.js"
 
+import { fileURLToPath } from 'url';
+import path, { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+
 mongoose.connect(`${process.env.DB_CONNECTION}`);
 mongoose.connection.once('open', async () => {
 
@@ -41,15 +48,17 @@ app.use('/categories', categoryRoutes);
 app.use('/issue-sheets', issueSheetRoutes)
 app.use('/users', userRoutes)
 
+app.use(express.static(path.join(__dirname, 'dist')));
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
+
+
+
+
 
 app.listen(PORT, () => {
     console.log(`server started at port ${PORT}`)
     swaggerDocs(app, PORT)
 })
 
-// *          content:
-// *             application/json
-// *                schema:
-// *                 type: array
-// *                     items:
-// *                          $ref: '#/components/schemas/Category'

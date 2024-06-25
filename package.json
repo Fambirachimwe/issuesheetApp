@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server"
+    "start": "node server",
+    "deploy": "cd frontend2/my-project/ && npm run build && cp -r dist \"../../\" "
   },
   "keywords": [],
   "author": "",
