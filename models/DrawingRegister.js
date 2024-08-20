@@ -123,9 +123,6 @@ const registerSchema = new Schema({
 
 
 
-
-
-
 export const Register = model('Register', registerSchema);
 export const Category = model('Category', categorySchema);
 export const Drawing = model('Drawing', drawingSchema);
